@@ -253,23 +253,23 @@ export default function Home() {
               </div>
             </header>
 
-            {/* B. Center Layered Stage (OVII Text in background, Perfume Bottle in foreground) */}
-            <div className="absolute inset-0 flex items-center justify-center w-full select-none pointer-events-none z-0">
+            {/* B. Center Layered Stage (OVII Text in center on mobile, top on desktop; Perfume Bottle at the bottom) */}
+            <div className="absolute inset-0 flex flex-col justify-between items-center w-full select-none pointer-events-none z-0">
 
-              {/* Massive background text positioned in the exact center */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-                <h1 className="font-display font-black tracking-tight text-[24vw] md:text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
+              {/* Massive background text */}
+              <div className="absolute md:relative top-1/2 md:top-auto left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-0 w-full flex items-center justify-center pt-0 md:pt-[18vh] pointer-events-none select-none z-0 text-center">
+                <h1 className="font-display font-black tracking-tight text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
                   OVII
                 </h1>
               </div>
 
-              {/* Perfume bottle container centered, overlapping the background text */}
-              <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none pb-[2vh] md:pb-[6vh] hero-bottle-wrap pointer-events-auto mt-4 md:mt-8">
+              {/* Perfume bottle container positioned at the bottom */}
+              <div className="relative z-10 w-full max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none pb-[12vh] md:pb-[30vh] hero-bottle-wrap pointer-events-auto">
                 <img
                   key={activeScentType}
                   src={getHeroBottleImage()}
                   alt={`${activeScentType === 'day' ? 'Day' : 'Night'} Perfume Bottle`}
-                  className="h-[75%] sm:h-[85%] md:h-[98%] object-contain animate-float animate-fade-in duration-700 filter drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
+                  className="h-[85%] md:h-[98%] object-contain animate-float animate-fade-in duration-700 filter drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
                 />
                 {/* Soft ground shadow beneath bottle */}
                 <div className="w-[50%] h-3 bg-black/25 rounded-full blur-md mt-2"></div>
