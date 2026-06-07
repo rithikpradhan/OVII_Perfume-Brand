@@ -94,7 +94,7 @@ export default function Navbar() {
           </button>
           <button
             onClick={handleShopOnline}
-            className="bg-[#dbff37] hover:bg-[#c3e62c] text-brand-charcoal px-7 py-3 md:px-8 md:py-3.5 rounded-full text-[12px] md:text-[13px] font-extrabold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm cursor-pointer font-sans"
+            className="bg-[#dbff37] hover:bg-[#c3e62c] text-brand-charcoal px-7 py-3 md:px-8 md:py-3.5 rounded-full text-[12px] md:text-[13px] font-extrabold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm cursor-pointer font-sans hidden lg:block"
           >
             Shop Online
           </button>

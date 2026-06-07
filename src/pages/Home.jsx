@@ -197,7 +197,7 @@ export default function Home() {
 
             {/* A. Integrated Header (Navbar inside Card) */}
             <header className="flex justify-between items-center w-full relative z-20">
-              {/* Left side Links */}
+              {/* Left side Links (hidden on mobile, visible on desktop) */}
               <div className="hidden lg:flex items-center space-x-12 text-[14px] md:text-[15px] font-medium text-white font-sans uppercase tracking-[0.15em] hero-nav-item">
                 <button onClick={() => setCurrentPage('catalog')} className="hover:text-[#dbff37] transition-colors cursor-pointer">
                   Products
@@ -210,8 +210,8 @@ export default function Home() {
                 </button>
               </div>
 
-              {/* Center Logo */}
-              <div className="flex items-center justify-center flex-grow lg:flex-grow-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 hero-nav-item">
+              {/* Logo (Left-aligned on mobile, absolute center on desktop) */}
+              <div className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2 hero-nav-item">
                 <button onClick={() => setCurrentPage('home')} className="flex items-center space-x-2 text-white hover:text-[#dbff37] transition-colors cursor-pointer">
                   {/* Sleek inline leaf/droplet logo - styled in white */}
                   <svg className="w-10 h-10 fill-none stroke-current stroke-[1.8]" viewBox="0 0 24 24">
@@ -222,7 +222,7 @@ export default function Home() {
               </div>
 
               {/* Right side Elements */}
-              <div className="flex items-center space-x-6 md:space-x-8 hero-nav-item">
+              <div className="flex items-center space-x-4 sm:space-x-6 md:space-x-8 hero-nav-item ml-auto lg:ml-0">
                 <button className="p-1.5 hover:text-[#dbff37] transition-colors hidden sm:block text-white cursor-pointer" aria-label="Search">
                   <Search className="w-[22px] h-[22px] stroke-[2.2]" />
                 </button>
@@ -239,13 +239,13 @@ export default function Home() {
                 </button>
                 <button
                   onClick={handleShopOnline}
-                  className="bg-[#dbff37] hover:bg-white text-brand-charcoal px-8 py-3.5 md:px-9 md:py-4 rounded-full text-[13px] md:text-[14px] font-extrabold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm cursor-pointer font-sans"
+                  className="bg-[#dbff37] hover:bg-white text-brand-charcoal px-8 py-3.5 md:px-9 md:py-4 rounded-full text-[13px] md:text-[14px] font-extrabold tracking-[0.1em] uppercase transition-all duration-300 shadow-sm cursor-pointer font-sans hidden lg:block"
                 >
                   Shop Online
                 </button>
-                <button onClick={() => setCurrentPage('catalog')} className="lg:hidden w-[52px] h-[52px] rounded-full bg-[#dbff37] hover:bg-white text-brand-charcoal flex items-center justify-center transition-colors cursor-pointer shadow-sm">
+                <button onClick={() => setCurrentPage('catalog')} className="lg:hidden w-[46px] h-[46px] sm:w-[52px] sm:h-[52px] rounded-full bg-[#dbff37] hover:bg-white text-brand-charcoal flex items-center justify-center transition-colors cursor-pointer shadow-sm">
                   {/* Horizontal double bars hamburger icon */}
-                  <div className="w-5.5 h-3 flex flex-col justify-between items-center">
+                  <div className="w-5 h-2.5 sm:w-5.5 sm:h-3 flex flex-col justify-between items-center">
                     <span className="w-full h-[2px] bg-brand-charcoal"></span>
                     <span className="w-full h-[2px] bg-brand-charcoal"></span>
                   </div>
@@ -253,24 +253,23 @@ export default function Home() {
               </div>
             </header>
 
-            {/* B. Center Layered Stage (OVII Text on top, Perfume Bottle below) */}
-            <div className="absolute inset-0 flex flex-col justify-between items-center w-full select-none pointer-events-none z-0">
+            {/* B. Center Layered Stage (OVII Text in background, Perfume Bottle in foreground) */}
+            <div className="absolute inset-0 flex items-center justify-center w-full select-none pointer-events-none z-0">
 
-              {/* Massive background text positioned at the top */}
-              <div className="w-full flex items-center justify-center pt-[15vh] md:pt-[18vh] pointer-events-none select-none z-0">
-                <h1 className="font-display font-black tracking-tight text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
+              {/* Massive background text positioned in the exact center */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+                <h1 className="font-display font-black tracking-tight text-[24vw] md:text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
                   OVII
                 </h1>
               </div>
 
-              {/* Perfume bottle container positioned below the name */}
-              <div className="relative z-10 w-full max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none pb-[12vh] md:pb-[30vh] hero-bottle-wrap pointer-events-auto">
-
+              {/* Perfume bottle container centered, overlapping the background text */}
+              <div className="relative z-10 w-full max-w-[280px] sm:max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none pb-[2vh] md:pb-[6vh] hero-bottle-wrap pointer-events-auto mt-4 md:mt-8">
                 <img
                   key={activeScentType}
                   src={getHeroBottleImage()}
                   alt={`${activeScentType === 'day' ? 'Day' : 'Night'} Perfume Bottle`}
-                  className="h-[85%] md:h-[98%] object-contain animate-float animate-fade-in duration-700 filter drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
+                  className="h-[75%] sm:h-[85%] md:h-[98%] object-contain animate-float animate-fade-in duration-700 filter drop-shadow-[0_20px_50px_rgba(255,255,255,0.2)]"
                 />
                 {/* Soft ground shadow beneath bottle */}
                 <div className="w-[50%] h-3 bg-black/25 rounded-full blur-md mt-2"></div>
@@ -278,7 +277,7 @@ export default function Home() {
             </div>
 
             {/* C. Bottom Section (Explore Pill + Scent Toggle switcher) */}
-            <div className="flex flex-row justify-between items-center w-full z-20 gap-3">
+            <div className="flex flex-row justify-between items-end w-full z-20 gap-3">
               {/* Bottom-left Pill link */}
               <button
                 onClick={handleExploreClick}
