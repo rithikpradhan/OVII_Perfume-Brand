@@ -173,11 +173,11 @@ export default function ProductDetail() {
     <div className="bg-[#FAF9F5] text-voldog-teal font-sans min-h-screen pb-24 relative overflow-hidden">
 
       {/* 1. TOP HEADER AREA (Cream background) */}
-      <section className="bg-[#FAF9F5] pt-32 pb-44 px-6 md:px-12 select-none relative z-10">
+      <section className="bg-[#FAF9F5] pt-28 pb-10 px-6 md:px-12 select-none relative z-10">
         <div className="max-w-4xl mx-auto text-center space-y-6">
 
           {/* Centered Breadcrumbs */}
-          <div className="flex justify-center items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-voldog-teal/40 font-voldog">
+          <div className="flex flex-wrap justify-center items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-voldog-teal/40 font-voldog">
             <button onClick={() => setCurrentPage('home')} className="hover:text-voldog-teal cursor-pointer transition-colors">Home</button>
             <span>›</span>
             <button onClick={() => setCurrentPage('catalog')} className="hover:text-voldog-teal cursor-pointer transition-colors">Products</button>
@@ -188,7 +188,7 @@ export default function ProductDetail() {
           </div>
 
           {/* Centered Title */}
-          <h1 className="font-voldog text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black text-voldog-teal uppercase tracking-tight leading-[1.3]">
+          <h1 className="font-voldog text-3xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black text-voldog-teal uppercase tracking-tight leading-[1.2]">
             {product.name}
           </h1>
 
@@ -199,11 +199,10 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* 2. ABSOLUTE WHITE SECTION BACKGROUND WITH CONCAVE TOP WAVE */}
-      <div className="absolute inset-x-0 bottom-0 top-[480px] md:top-[560px] bg-white z-0">
-        {/* Concave Wave SVG */}
+      {/* 2. WAVE DIVIDER */}
+      <div className="w-full overflow-hidden leading-none bg-[#FAF9F5]">
         <svg
-          className="absolute top-0 left-0 w-full h-[60px] md:h-[100px] -translate-y-full"
+          className="w-full h-[50px] md:h-[80px]"
           viewBox="0 0 1200 100"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -212,8 +211,8 @@ export default function ProductDetail() {
         </svg>
       </div>
 
-      {/* 3. MAIN SECTION OVERLAY */}
-      <section className="relative z-20 px-6 md:px-12 select-none -mt-36 md:-mt-48">
+      {/* 3. MAIN SECTION */}
+      <section className="relative z-20 px-6 md:px-12 select-none bg-white">
         <div className="max-w-8xl mx-auto">
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end relative min-h-[400px]">
@@ -463,7 +462,9 @@ export default function ProductDetail() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-xs font-voldog">
             <div className="space-y-4 p-4">
-              <div className="w-12 h-12 rounded-full border border-voldog-teal/15 bg-white flex items-center justify-center font-serif text-lg text-voldog-teal font-bold mx-auto shadow-xs">1</div>
+              <div className="w-14 h-14 rounded-full border-2 border-voldog-teal/20 bg-voldog-lime/20 flex items-center justify-center mx-auto shadow-sm">
+                <span className="font-serif italic text-2xl text-voldog-teal leading-none" style={{fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontWeight: 700}}>1</span>
+              </div>
               <h4 className="font-voldog text-base font-extrabold text-voldog-teal">Warm Scent Balm</h4>
               <p className="text-voldog-teal/70 leading-relaxed font-semibold">
                 Swirl your clean finger gently across the wax surface. The organic beeswax base liquefies slightly under your natural body warmth.
@@ -471,7 +472,9 @@ export default function ProductDetail() {
             </div>
 
             <div className="space-y-4 p-4">
-              <div className="w-12 h-12 rounded-full border border-voldog-teal/15 bg-white flex items-center justify-center font-serif text-lg text-voldog-teal font-bold mx-auto shadow-xs">2</div>
+              <div className="w-14 h-14 rounded-full border-2 border-voldog-teal/20 bg-voldog-lime/20 flex items-center justify-center mx-auto shadow-sm">
+                <span className="font-serif italic text-2xl text-voldog-teal leading-none" style={{fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontWeight: 700}}>2</span>
+              </div>
               <h4 className="font-voldog text-base font-extrabold text-voldog-teal">Dab on Pulse Points</h4>
               <p className="text-voldog-teal/70 leading-relaxed font-semibold">
                 Apply the botanical balm directly onto warm pulse points: inner wrists, base of the throat, and behind your ear lobes.
@@ -479,7 +482,9 @@ export default function ProductDetail() {
             </div>
 
             <div className="space-y-4 p-4">
-              <div className="w-12 h-12 rounded-full border border-voldog-teal/15 bg-white flex items-center justify-center font-serif text-lg text-voldog-teal font-bold mx-auto shadow-xs">3</div>
+              <div className="w-14 h-14 rounded-full border-2 border-voldog-teal/20 bg-voldog-lime/20 flex items-center justify-center mx-auto shadow-sm">
+                <span className="font-serif italic text-2xl text-voldog-teal leading-none" style={{fontFamily: '"Cormorant Garamond", serif', fontStyle: 'italic', fontWeight: 700}}>3</span>
+              </div>
               <h4 className="font-voldog text-base font-extrabold text-voldog-teal">Refresh On-The-Go</h4>
               <p className="text-voldog-teal/70 leading-relaxed font-semibold">
                 Slip the tin into pocket or handbag. The solid formulation means no leaking or evaporating, ready for refreshers anytime.

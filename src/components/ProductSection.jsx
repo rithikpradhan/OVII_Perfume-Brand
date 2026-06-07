@@ -155,7 +155,7 @@ export default function ProductSection() {
         </div>
 
         {/* Product Cards Grid with custom spacious look and floating drop shadows */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {displayProducts.map((product) => (
             <div
               key={product.id}
@@ -163,26 +163,26 @@ export default function ProductSection() {
                 setSelectedProductId(product.id)
                 setCurrentPage('product')
               }}
-              className="product-card bg-[#F0F2F1] hover:bg-white rounded-[2.5rem] p-8 shadow-sm border border-voldog-teal/5 flex flex-col justify-between transition-all duration-500 hover:scale-[1.03] cursor-pointer group relative min-h-[390px]"
+              className="product-card bg-[#F0F2F1] hover:bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-voldog-teal/5 flex flex-col transition-all duration-500 hover:scale-[1.02] cursor-pointer group relative"
             >
-              {/* Product Image Stage (No background concentric circles, just clean floating card spacing) */}
-              <div className="w-full aspect-[4/3] flex items-center justify-center relative mb-6">
+              {/* Product Image Stage — takes up most space */}
+              <div className="w-full flex-1 flex items-center justify-center relative px-6 pt-8 pb-4" style={{minHeight: '220px'}}>
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-[85%] object-contain transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)] relative z-10"
+                  className="h-[180px] object-contain transition-all duration-700 group-hover:scale-105 group-hover:-translate-y-2 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.06)] relative z-10"
                 />
                 {/* Soft ground shadow underneath bottle */}
-                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-[55%] h-2 bg-voldog-teal/10 rounded-full blur-xs transition-all duration-700 group-hover:scale-x-90 group-hover:opacity-60"></div>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[55%] h-2 bg-voldog-teal/10 rounded-full blur-xs transition-all duration-700 group-hover:scale-x-90 group-hover:opacity-60"></div>
               </div>
 
-              {/* Scent Info (Left-aligned details matching Voldog layout) */}
-              <div className="space-y-1.5 font-voldog text-left">
+              {/* Product Info footer — always at bottom */}
+              <div className="px-6 py-5 bg-white/60 group-hover:bg-white transition-colors duration-300 border-t border-voldog-teal/5">
+                <span className="block text-[9px] uppercase tracking-widest font-black text-voldog-teal/40 mb-1">{product.family}</span>
                 <h3 className="font-voldog text-lg md:text-xl font-bold text-voldog-teal group-hover:text-[#6E7E6A] transition-colors leading-snug">
                   {product.name}
                 </h3>
-
-                <span className="block text-sm md:text-[15px] font-semibold text-[#D0523C]">
+                <span className="block text-sm md:text-[15px] font-semibold text-[#D0523C] mt-1">
                   ₹{product.price8g} – ₹{product.price15g}
                 </span>
               </div>
