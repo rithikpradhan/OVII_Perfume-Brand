@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Prata&family=Outfit:wght@300;400;500;600;700&family=Archivo+Black&family=Syne:wght@800;900&display=swap');
+@import url('https://use.typekit.net/lqx2qrc.css');
+
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Prata", serif;
+  --font-sans: "Outfit", sans-serif;
+  --font-display: "Archivo Black", "Syne", sans-serif;
+  --font-voldog: "peridot-pe-variable", "Outfit", sans-serif;
+
+  --color-brand-ivory: #FAF9F5;       /* Warm light off-white background */
+  --color-brand-sage: #6E7E6A;        /* Sage green accent */
+  --color-brand-sage-dark: #52604F;   /* Sage dark accent */
+  --color-brand-gold: #3B4E3C;        /* Dark forest green accent */
+  --color-brand-gold-dark: #263327;   /* Very dark green */
+  --color-brand-charcoal: #1F1F1E;    /* Dark charcoal for main text */
+  --color-brand-charcoal-light: #3E3E3C; /* Dark charcoal light */
+  --color-brand-cream: #F3EEE3;       /* Warm cream */
+  --color-voldog-teal: #204e4a;       /* Deep slate teal text color from Voldog */
+  --color-voldog-lime: #dbff37;       /* Yellow-green accent highlight from Voldog */
+
+  --animate-slide-left: slide-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-right: slide-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.3s ease-out forwards;
+}
+
+@keyframes slide-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Custom styles and overrides */
+html {
+  background-color: #FAF9F5;
+}
+
+/* Lenis smooth scrolling support */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: #FAF9F5; /* brand-ivory */
+  color: #1F1F1E; /* brand-charcoal */
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #6E7E6A;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3B4E3C;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Elegant gold shimmer keyframe */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Floating product animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* --- PREMIUM USER-INTERFACE ANIMATIONS --- */
+
+/* Morphing ambient background glow keyframes */
+@keyframes morph-glow-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes morph-glow-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-50px, 50px) scale(1.2);
+  }
+}
+
+@keyframes morph-glow-3 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  40% {
+    transform: translate(60px, 30px) scale(0.85);
+  }
+  80% {
+    transform: translate(-30px, -45px) scale(1.1);
+  }
+}
+
+.animate-morph-glow-1 {
+  animation: morph-glow-1 25s ease-in-out infinite;
+}
+.animate-morph-glow-2 {
+  animation: morph-glow-2 30s ease-in-out infinite;
+}
+.animate-morph-glow-3 {
+  animation: morph-glow-3 28s ease-in-out infinite;
+}
+
+/* Elegant Text Reveal and Slide Up */
+.reveal-text-container {
+  overflow: hidden;
+  display: block;
+}
+
+.reveal-text-line {
+  display: block;
+  transform: translateY(105%) rotate(1.5deg);
+  transform-origin: left top;
+  opacity: 0;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s ease-out;
+}
+
+.reveal-active .reveal-text-line {
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+}
+
+/* Fade Up Reveal */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-active .reveal-fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* General Fade In Reveal */
+.reveal-fade-in {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-active .reveal-fade-in {
+  opacity: 1;
+}
+
+/* SVG Line Drawing animation */
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 85;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 85;
+  stroke-dashoffset: 85;
+  animation: drawLine 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Elastic portal scale-up */
+.portal-spring {
+  transform: scale(0.2);
+  opacity: 0;
+  transition: transform 1.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.9s ease-out;
+}
+
+.reveal-active .portal-spring {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Portal Interactive Hover States */
+.portal-hover-effect {
+  transition: border-color 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+.portal-hover-effect:hover {
+  transform: scale(1.05) translateY(-3px) rotate(1deg);
+  border-color: rgba(201, 168, 76, 0.5); /* brand-gold */
+  box-shadow: 0 15px 30px -5px rgba(201, 168, 76, 0.2);
+}
+
+/* Animation Delays */
+.delay-75 { transition-delay: 75ms; }
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-250 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-350 { transition-delay: 350ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+.delay-600 { transition-delay: 600ms; }
+.delay-700 { transition-delay: 700ms; }
+.delay-800 { transition-delay: 800ms; }
+.delay-900 { transition-delay: 900ms; }
+.delay-1000 { transition-delay: 1000ms; }
+
