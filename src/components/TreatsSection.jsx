@@ -183,8 +183,8 @@ export default function TreatsSection() {
                 key={item.id}
                 className="treats-card-item w-[280px] md:w-[320px] shrink-0 bg-[#F0F2F1] rounded-[2.5rem] p-8 flex flex-col justify-between relative min-h-[385px] border border-voldog-teal/5 transition-all duration-500 hover:scale-[1.02] hover:bg-white hover:shadow-md cursor-default group"
               >
-                {/* Floating active/drag tag */}
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-voldog-lime text-voldog-teal font-extrabold text-[10px] uppercase tracking-wider py-1.5 px-4 rounded-full shadow-xs opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-30 flex items-center gap-1.5">
+                {/* Floating drag tag - desktop only */}
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-voldog-lime text-voldog-teal font-extrabold text-[10px] uppercase tracking-wider py-1.5 px-4 rounded-full shadow-xs opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 z-30 items-center gap-1.5 hidden md:flex">
                   <span>drag</span>
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                     <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5a1 1 0 1 1-2 0V11a1 1 0 1 1 2 0zm0-5.5a1 1 0 1 1-2 0V9a1 1 0 1 1 2 0z" />
@@ -216,10 +216,10 @@ export default function TreatsSection() {
                     ₹{item.price}.00
                   </span>
 
-                  {/* Add to cart pill - Slides up on hover */}
+                  {/* Add to cart button - always visible on mobile, hover-reveal on desktop */}
                   <button
                     onClick={(e) => handleAddToCart(e, item)}
-                    className="w-full bg-white hover:bg-voldog-lime text-voldog-teal font-extrabold text-[11px] uppercase tracking-wider py-3.5 px-5 rounded-2xl shadow-xs border border-voldog-teal/5 flex items-center justify-between transition-all duration-300 opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 mt-4 cursor-pointer"
+                    className="w-full bg-white hover:bg-voldog-lime text-voldog-teal font-extrabold text-[11px] uppercase tracking-wider py-3.5 px-5 rounded-2xl shadow-xs border border-voldog-teal/5 flex items-center justify-between transition-all duration-300 mt-4 cursor-pointer md:opacity-0 md:translate-y-3 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                   >
                     <span>Add to cart</span>
                     <span className="w-6 h-6 rounded-full bg-voldog-lime text-voldog-teal flex items-center justify-center transition-colors group-hover:bg-white">

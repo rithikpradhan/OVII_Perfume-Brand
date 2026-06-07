@@ -82,8 +82,8 @@ function ProductCard({ prod }) {
         </div>
       </div>
 
-      {/* Place Order Button visible on hover */}
-      <div className="mt-4 pt-2 border-t border-voldog-teal/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* Place Order Button - always visible on mobile, hover-reveal on desktop */}
+      <div className="mt-4 pt-2 border-t border-voldog-teal/5 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
         <div className="w-full bg-white text-voldog-teal font-black text-xs py-2 px-4 rounded-full flex items-center justify-between border border-voldog-teal/10 shadow-xs">
           <span>Place your order</span>
           <span className="w-5 h-5 rounded-full bg-voldog-lime text-voldog-teal flex items-center justify-center">
