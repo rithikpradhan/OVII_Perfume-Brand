@@ -48,7 +48,7 @@ function ProductCard({ prod }) {
         setCurrentPage('product')
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }}
-      className="bg-[#F0F2F1] rounded-[2rem] p-6 flex flex-col justify-between w-[280px] shrink-0 min-h-[380px] relative transition-all duration-300 hover:bg-white hover:shadow-lg border border-voldog-teal/5 group cursor-pointer"
+      className="bg-[#F0F2F1] rounded-[2rem] p-6 flex flex-col w-[260px] shrink-0 relative transition-all duration-300 hover:bg-white hover:shadow-lg border border-voldog-teal/5 group cursor-pointer"
     >
       {/* Sizes Badges visible on hover */}
       <div className="absolute top-4 left-4 flex gap-1 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -330,17 +330,17 @@ export default function ProductDetail() {
 
           <div className="bg-white rounded-[2.5rem] p-8 md:p-10 shadow-[0_15px_45px_rgba(32,78,74,0.04)] border border-voldog-teal/5 font-voldog select-none text-left">
             {/* Tab buttons */}
-            <div className="bg-[#F0F2F1] rounded-full p-1 flex gap-1 mb-8 overflow-x-auto no-scrollbar">
+            <div className="flex gap-1 mb-8 bg-[#F0F2F1] rounded-full p-1">
               {['scent profile', 'ingredients', 'suitable for'].map((tabName) => {
                 const isSelected = activeTab === tabName
                 return (
                   <button
                     key={tabName}
                     onClick={() => setActiveTab(tabName)}
-                    className={`w-full text-center py-2.5 px-6 rounded-full font-black text-[10px] md:text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${isSelected
+                    className={`flex-1 min-w-0 text-center py-2.5 px-3 rounded-full font-black text-[9px] md:text-xs uppercase tracking-wide transition-all duration-300 cursor-pointer whitespace-nowrap ${isSelected
                       ? 'bg-voldog-lime text-voldog-teal shadow-xs'
                       : 'text-voldog-teal/60 hover:text-voldog-teal'
-                      }`}
+                    }`}
                   >
                     {tabName}
                   </button>
