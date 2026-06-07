@@ -1,5 +1,5 @@
 import React from 'react'
-import { X, Plus, Minus, Trash2, ShieldCheck, Sparkles, ShoppingBag } from 'lucide-react'
+import { X, Plus, Minus, Trash2, ShieldCheck, Frown, ShoppingBag } from 'lucide-react'
 import { useStore } from '../store'
 
 export default function CartDrawer() {
@@ -82,7 +82,7 @@ export default function CartDrawer() {
             {cart.length === 0 ? (
               <div className="h-full flex flex-col justify-center items-center text-center space-y-5 py-12">
                 <div className="w-20 h-20 rounded-full bg-voldog-lime/15 text-voldog-teal flex items-center justify-center animate-pulse">
-                  <Sparkles className="w-8 h-8 stroke-[1.5]" />
+                  <Frown className="w-8 h-8 stroke-[1.5]" />
                 </div>
                 <div className="space-y-1.5 max-w-xs">
                   <h3 className="font-voldog text-base font-black text-voldog-teal uppercase tracking-tight">Your bag is empty</h3>

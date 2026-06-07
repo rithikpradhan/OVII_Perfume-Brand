@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { ArrowRight, Sun, Moon, Search, ShoppingBag, User, ChevronDown, Flower, Sparkles } from 'lucide-react'
+import { ArrowRight, Sun, Cloud, Search, ShoppingBag, User, ChevronDown, Flower, Sparkles } from 'lucide-react'
 import { useStore } from '../store'
 import dayBottle from '../assets/day-bottle.png'
 import nightBottle from '../assets/night-bottle.png'
@@ -254,17 +254,17 @@ export default function Home() {
             </header>
 
             {/* B. Center Layered Stage (OVII Text in center on mobile, top on desktop; Perfume Bottle at the bottom) */}
-            <div className="absolute inset-0 flex flex-col justify-between items-center w-full select-none pointer-events-none z-0">
+            <div className="absolute inset-0 flex flex-col justify-center md:justify-between items-center w-full select-none pointer-events-none z-0">
 
               {/* Massive background text */}
-              <div className="absolute md:relative top-1/2 md:top-auto left-1/2 md:left-auto -translate-x-1/2 md:translate-x-0 -translate-y-1/2 md:translate-y-0 w-full flex items-center justify-center pt-0 md:pt-[18vh] pointer-events-none select-none z-0 text-center">
+              <div className="relative w-full flex items-center justify-center pt-8 md:pt-[18vh] pointer-events-none select-none z-0 text-center">
                 <h1 className="font-display font-black tracking-tight text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
                   OVII
                 </h1>
               </div>
 
               {/* Perfume bottle container positioned at the bottom */}
-              <div className="relative z-10 w-full max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none pb-[12vh] md:pb-[30vh] hero-bottle-wrap pointer-events-auto">
+              <div className="relative z-10 w-full max-w-[340px] md:max-w-[440px] aspect-square md:aspect-[4/5] flex flex-col items-center justify-center select-none mt-4 md:mt-0 pb-0 md:pb-[30vh] hero-bottle-wrap pointer-events-auto">
                 <img
                   key={activeScentType}
                   src={getHeroBottleImage()}
@@ -316,7 +316,7 @@ export default function Home() {
                         }`}
                       aria-label="Night Scent Ritual"
                     >
-                      <Moon className="w-5 h-5 stroke-[2.2]" />
+                      <Cloud className="w-5 h-5 stroke-[2.2]" />
                     </button>
                   </div>
                 </div>

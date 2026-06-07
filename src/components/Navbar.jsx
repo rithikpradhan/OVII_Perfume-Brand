@@ -67,13 +67,34 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Center Logo */}
-        <div className="flex items-center justify-center flex-grow lg:flex-grow-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-          <button onClick={() => handleNavClick('home')} className="flex items-center space-x-2 text-brand-gold hover:text-brand-sage transition-colors cursor-pointer">
+        {/* Left side Links and Logo */}
+        <div className="flex items-center space-x-4 md:space-x-6">
+          {/* Logo on left */}
+          <button onClick={() => handleNavClick('home')} className="flex items-center space-x-2 text-brand-gold hover:text-brand-sage transition-colors cursor-pointer mr-auto">
             <span className="font-voldog text-2xl md:text-3xl font-black text-brand-gold uppercase tracking-[0.12em] select-none">
               OVII
             </span>
           </button>
+          {/* Left side navigation links (visible on large screens) */}
+          <div className="hidden lg:flex items-center space-x-12 text-[14px] md:text-[15px] font-extrabold text-brand-charcoal font-sans uppercase tracking-[0.15em]">
+            <button onClick={() => handleNavClick('catalog')} className="hover:text-brand-gold transition-colors cursor-pointer">
+              Products
+            </button>
+            <button onClick={() => {
+              if (currentPage !== 'home') {
+                setCurrentPage('home')
+                setTimeout(() => { document.getElementById('scents')?.scrollIntoView({ behavior: 'smooth' }) }, 100)
+              } else {
+                document.getElementById('scents')?.scrollIntoView({ behavior: 'smooth' })
+              }
+              setIsMobileMenuOpen(false)
+            }} className="hover:text-brand-gold transition-colors cursor-pointer">
+              The Ritual
+            </button>
+            <button onClick={() => handleNavClick('contact')} className="hover:text-brand-gold transition-colors cursor-pointer">
+              Contact
+            </button>
+          </div>
         </div>
 
         {/* Right side Elements */}
