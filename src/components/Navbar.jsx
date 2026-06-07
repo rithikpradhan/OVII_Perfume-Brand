@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ShoppingBag, Search, User } from 'lucide-react'
 import { useStore } from '../store'
 
-export default function Navbar() {
+export default function Navbar({ activePage }) {
   const { cart, setCartOpen, currentPage, setCurrentPage } = useStore()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -22,7 +22,8 @@ export default function Navbar() {
 
   const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0)
 
-  const isHomeTop = currentPage === 'home' && !isScrolled
+  const displayPage = activePage || currentPage
+  const isHomeTop = displayPage === 'home' && !isScrolled
 
   const handleShopOnline = () => {
     setCurrentPage('catalog')
@@ -98,13 +99,13 @@ export default function Navbar() {
         <div className="lg:hidden absolute top-full left-0 right-0 bg-[#FAF9F5]/95 backdrop-blur-md border-b border-brand-sage/10 shadow-lg py-6 px-6 flex flex-col space-y-4 animate-fade-in z-50">
           <button
             onClick={() => handleNavClick('catalog')}
-            className={`font-sans text-[18px] tracking-wide text-left py-2 border-b border-brand-gold/10 ${currentPage === 'catalog' ? 'text-brand-gold font-medium' : 'text-brand-charcoal/70'}`}
+            className={`font-sans text-[18px] tracking-wide text-left py-2 border-b border-brand-gold/10 ${displayPage === 'catalog' ? 'text-brand-gold font-medium' : 'text-brand-charcoal/70'}`}
           >
             Products
           </button>
           <button
             onClick={() => handleNavClick('contact')}
-            className={`font-sans text-[18px] tracking-wide text-left py-2 border-b border-brand-gold/10 ${currentPage === 'contact' ? 'text-brand-gold font-medium' : 'text-brand-charcoal/70'}`}
+            className={`font-sans text-[18px] tracking-wide text-left py-2 border-b border-brand-gold/10 ${displayPage === 'contact' ? 'text-brand-gold font-medium' : 'text-brand-charcoal/70'}`}
           >
             Contact
           </button>

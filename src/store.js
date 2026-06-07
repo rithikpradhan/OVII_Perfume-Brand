@@ -27,7 +27,6 @@ export const useStore = create((set, get) => ({
   
   setCurrentPage: (page) => {
     set({ currentPage: page });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   },
 
   setSelectedProductId: (id) => {

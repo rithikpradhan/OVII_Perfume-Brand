@@ -20,6 +20,11 @@ if (typeof window !== 'undefined') {
 function App() {
   const { currentPage, setCurrentPage, selectedProductId, setSelectedProductId, fetchProducts } = useStore()
 
+  const [activePage, setActivePage] = React.useState(currentPage)
+  const [activeProductId, setActiveProductId] = React.useState(selectedProductId)
+  const overlayRef = React.useRef(null)
+  const logoRef = React.useRef(null)
+
   // 0. Initialize Lenis Smooth Scroll
   useEffect(() => {
     const lenis = new Lenis({
@@ -59,7 +64,7 @@ function App() {
       ScrollTrigger.refresh()
     }, 150)
     return () => clearTimeout(timer)
-  }, [currentPage])
+  }, [activePage])
 
   // 1. Initial product fetch on mount
   useEffect(() => {
@@ -117,15 +122,77 @@ function App() {
     }
   }, [currentPage, selectedProductId])
 
+  // Handle page transitions with GSAP curtain overlay
+  const isFirstRender = React.useRef(true)
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
+    if (currentPage === activePage && selectedProductId === activeProductId) {
+      return
+    }
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'power3.inOut' }
+    })
+
+    // Prepare overlay state
+    gsap.set(overlayRef.current, {
+      yPercent: 100,
+      opacity: 1,
+      display: 'flex'
+    })
+    gsap.set(logoRef.current, {
+      opacity: 0,
+      scale: 0.8
+    })
+
+    // Transition Animation Sequence
+    tl.to(overlayRef.current, {
+      yPercent: 0,
+      duration: 0.5
+    })
+    .to(logoRef.current, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.35,
+      ease: 'back.out(1.5)'
+    }, '-=0.1')
+    .add(() => {
+      setActivePage(currentPage)
+      setActiveProductId(selectedProductId)
+    })
+    .to(logoRef.current, {
+      opacity: 0,
+      scale: 1.1,
+      duration: 0.25,
+      delay: 0.15
+    })
+    .to(overlayRef.current, {
+      yPercent: -100,
+      duration: 0.5
+    })
+    .set(overlayRef.current, {
+      display: 'none'
+    })
+
+    return () => {
+      tl.kill()
+    }
+  }, [currentPage, selectedProductId, activePage, activeProductId])
+
   // Dynamic Page Routing
   const renderPage = () => {
-    switch (currentPage) {
+    switch (activePage) {
       case 'home':
         return <Home />
       case 'catalog':
         return <Catalog />
       case 'product':
-        return <ProductDetail />
+        return <ProductDetail productId={activeProductId} />
       case 'checkout':
         return <Checkout />
       case 'contact':
@@ -140,7 +207,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-brand-ivory text-brand-charcoal overflow-x-hidden selection:bg-brand-gold/25 selection:text-brand-charcoal">
       {/* Navigation Header */}
-      {currentPage !== 'admin' && <Navbar />}
+      {activePage !== 'admin' && <Navbar activePage={activePage} />}
 
       {/* Main Content Area */}
       <main className="flex-grow animate-fade-in">
@@ -148,10 +215,26 @@ function App() {
       </main>
 
       {/* Footer Details */}
-      {currentPage !== 'admin' && <CtaBanner />}
+      {activePage !== 'admin' && <CtaBanner />}
 
       {/* Shopping Cart Drawer Sidebar */}
       <CartDrawer />
+
+      {/* Premium GSAP Page Transition Overlay */}
+      <div
+        ref={overlayRef}
+        className="fixed inset-0 z-[9999] bg-[#204e4a] flex flex-col items-center justify-center pointer-events-auto"
+        style={{ display: 'none', transform: 'translateY(100%)' }}
+      >
+        <div ref={logoRef} className="flex flex-col items-center space-y-4">
+          <span className="font-voldog font-black text-6xl tracking-[0.25em] text-[#dbff37] select-none">
+            OVII
+          </span>
+          <span className="text-[10px] tracking-[0.4em] uppercase text-white/50 font-bold select-none">
+            Botanical Perfume House
+          </span>
+        </div>
+      </div>
     </div>
   )
 }

@@ -30,7 +30,45 @@ const MistIcon = () => (
 export default function ProductSection() {
   const { setCurrentPage, setSelectedProductId, products } = useStore()
   const [filterType, setFilterType] = useState('solid') // 'solid' | 'mist'
+  const [isAnimating, setIsAnimating] = useState(false)
   const sectionRef = useRef(null)
+
+  const handleFilterChange = (newType) => {
+    if (newType === filterType || isAnimating) return
+
+    setIsAnimating(true)
+
+    // Animate cards out
+    gsap.to(".product-card", {
+      opacity: 0,
+      y: 15,
+      scale: 0.97,
+      duration: 0.2,
+      stagger: 0.04,
+      ease: "power2.in",
+      onComplete: () => {
+        setFilterType(newType)
+        
+        // Wait for React state commit, then animate cards in
+        setTimeout(() => {
+          gsap.fromTo(".product-card",
+            { opacity: 0, y: 20, scale: 0.97 },
+            { 
+              opacity: 1, 
+              y: 0, 
+              scale: 1, 
+              duration: 0.4, 
+              stagger: 0.06, 
+              ease: "power2.out",
+              onComplete: () => {
+                setIsAnimating(false)
+              }
+            }
+          )
+        }, 30)
+      }
+    })
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -124,7 +162,7 @@ export default function ProductSection() {
             {/* Solid vs Mist filter switcher pill exactly matching Voldog's shape */}
             <div className="products-switcher inline-flex bg-[#F0F2F1] p-1.5 rounded-full border border-voldog-teal/5 shadow-xs font-voldog select-none">
               <button
-                onClick={() => setFilterType('solid')}
+                onClick={() => handleFilterChange('solid')}
                 className={`px-8 py-3.5 rounded-full text-xs uppercase tracking-wider font-extrabold flex items-center transition-all duration-300 cursor-pointer ${filterType === 'solid'
                   ? 'bg-voldog-lime text-voldog-teal shadow-xs scale-102'
                   : 'bg-transparent text-voldog-teal/50 hover:text-voldog-teal'
@@ -134,7 +172,7 @@ export default function ProductSection() {
                 <span>Solid</span>
               </button>
               <button
-                onClick={() => setFilterType('mist')}
+                onClick={() => handleFilterChange('mist')}
                 className={`px-8 py-3.5 rounded-full text-xs uppercase tracking-wider font-extrabold flex items-center transition-all duration-300 cursor-pointer ${filterType === 'mist'
                   ? 'bg-voldog-lime text-voldog-teal shadow-xs scale-102'
                   : 'bg-transparent text-voldog-teal/50 hover:text-voldog-teal'

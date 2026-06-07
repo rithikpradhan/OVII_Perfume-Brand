@@ -95,8 +95,10 @@ function ProductCard({ prod }) {
   )
 }
 
-export default function ProductDetail() {
-  const { selectedProductId, addToCart, setCurrentPage, setCartOpen, products } = useStore()
+export default function ProductDetail({ productId }) {
+  const { selectedProductId: storeSelectedProductId, addToCart, setCurrentPage, setCartOpen, products } = useStore()
+
+  const selectedProductId = productId || storeSelectedProductId
 
   // Find active product
   const currentProductsList = useMemo(() => {

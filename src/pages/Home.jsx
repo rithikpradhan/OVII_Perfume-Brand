@@ -35,10 +35,23 @@ export default function Home() {
     const ctx = gsap.context(() => {
       const heroTl = gsap.timeline()
 
-      // Animate background large letters
-      heroTl.fromTo(".hero-bg-text",
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 0.85, duration: 1.8, ease: "power3.out" }
+      // Animate background large letters character by character
+      heroTl.fromTo(".hero-bg-char",
+        { 
+          opacity: 0, 
+          y: 120, 
+          scale: 0.75,
+          rotate: -10
+        },
+        { 
+          opacity: 0.85, 
+          y: 0, 
+          scale: 1, 
+          rotate: 0,
+          duration: 1.5, 
+          stagger: 0.12, 
+          ease: "power4.out" 
+        }
       )
 
       // Animate header nav items
@@ -258,8 +271,12 @@ export default function Home() {
 
               {/* Massive background text */}
               <div className="relative w-full flex items-center justify-center pt-8 md:pt-[18vh] pointer-events-none select-none z-0 text-center">
-                <h1 className="font-display font-black tracking-tight text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text">
-                  OVII
+                <h1 className="font-display font-black tracking-tight text-[22vw] text-white opacity-85 uppercase select-none leading-none text-center hero-bg-text flex justify-center items-center">
+                  {["O", "V", "I", "I"].map((char, index) => (
+                    <span key={index} className="inline-block hero-bg-char transform-gpu">
+                      {char}
+                    </span>
+                  ))}
                 </h1>
               </div>
 
